@@ -1,4 +1,56 @@
-<p>
-    Soy un modelo de lenguaje grande, entrenado por Google. Me encanta generar código y ayudar con tus
-    preguntas.
-</p>
+<div class="card">
+    <!-- Toolbar para el título y el botón de nuevo cliente -->
+    <p-toolbar styleClass="mb-4">
+        <ng-template pTemplate="left">
+            <h2>Listado de Clientes</h2>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-button label="Crear Nuevo Cliente" icon="pi pi-plus" styleClass="p-button-success"></p-button>
+        </ng-template>
+    </p-toolbar>
+
+    <!-- Tabla de Clientes -->
+    <!-- responsiveLayout="scroll" -->
+    <p-table [value]="clientes" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th scope="col">RUC</th>
+                <th scope="col">Nombre Completo</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Tipo Persona</th>
+                <th scope="col">Nacionalidad</th>
+                <th scope="col">¿Es PEP?</th>
+                <th scope="col">Consentimiento LOPDP</th>
+                <th scope="col" style="width: 8rem">Acciones</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-cliente>
+            <tr>
+                <td>{{cliente.rucCliente}}</td>
+                <td>{{cliente.nombreCliente}}</td>
+                <td>{{cliente.correoCliente}}</td>
+                <td>{{cliente.tipoPersonaCliente}}</td>
+                <td>{{cliente.nacionalidadCliente}}</td>
+                <td>
+                    <p-tag [severity]="cliente.esPEP ? 'success' : 'danger'" [value]="cliente.esPEP ? 'Sí' : 'No'">
+                    </p-tag>
+                </td>
+                <td>
+                    <p-tag [severity]="cliente.consentimientoLOPDP ? 'success' : 'danger'"
+                        [value]="cliente.consentimientoLOPDP ? 'Sí' : 'No'">
+                    </p-tag>
+                </td>
+                <td>
+                    <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-info mr-2"></p-button>
+                    <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-danger"></p-button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="11" class="text-center">No se encontraron clientes.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
