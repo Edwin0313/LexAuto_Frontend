@@ -1,17 +1,17 @@
 <div class="card">
     <!-- Toolbar para el título y el botón de nuevo cliente -->
-    <p-toolbar styleClass="mb-4">
+    <p-toolbar class="mb-4">
         <ng-template pTemplate="left">
             <h2>Listado de Clientes</h2>
         </ng-template>
 
         <ng-template pTemplate="right">
-            <p-button label="Crear Nuevo Cliente" icon="pi pi-plus" styleClass="p-button-success"></p-button>
+            <p-button label="Crear Nuevo Cliente" icon="pi pi-plus" styleClass="p-button-success"
+                (onClick)="abrirCrearCliente(true)"></p-button>
         </ng-template>
     </p-toolbar>
 
     <!-- Tabla de Clientes -->
-    <!-- responsiveLayout="scroll" -->
     <p-table [value]="clientes" [tableStyle]="{'min-width': '50rem'}">
         <ng-template pTemplate="header">
             <tr>
@@ -54,3 +54,6 @@
         </ng-template>
     </p-table>
 </div>
+@if (mostrarCrearCliente) {
+<app-crear-cliente [(mostrarCrearCliente)]="mostrarCrearCliente"></app-crear-cliente>
+}

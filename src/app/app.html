@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<div class="topbar p-3 surface-0 shadow-2 flex align-items-center">
+
+  <p-button (onClick)="sidebarVisible = true" icon="pi pi-bars" styleClass="p-button-text p-button-secondary">
+  </p-button>
+
+  <span class="text-xl ml-3 font-semibold">LexAuto</span>
+</div>
+
+<p-drawer [(visible)]="sidebarVisible" position="left" [showCloseIcon]="true" [modal]="true"
+  [style]="{ width: '20rem' }">
+
+  <h3 class="mb-4">Menú</h3>
+
+  <p-panelMenu [model]="menuItems" class="w-full">
+  </p-panelMenu>
+
+</p-drawer>
+
+<div class="p-4">
+  <router-outlet></router-outlet>
+</div>
