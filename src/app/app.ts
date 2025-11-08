@@ -7,13 +7,16 @@ import { DrawerModule } from 'primeng/drawer';
 import { ButtonModule } from 'primeng/button';
 // Opcional: Usamos PanelMenu para un menú anidado y estructurado
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, CommonModule,
     DrawerModule,
     ButtonModule,
-    PanelMenuModule],
+    PanelMenuModule,
+    ToastModule
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

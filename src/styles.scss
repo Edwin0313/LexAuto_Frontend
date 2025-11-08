@@ -1,2 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeicons/primeicons.css";
+
+/* Sobrescribe las variables dentro del selector global :root */
+:root {
+    /* ========================================================== */
+    /* 1. COLOR PRIMARIO BASE (TU COLOR DE MARCA) */
+    /* ========================================================== */
+    --primary-color: #014F86; 
+
+    /* ========================================================== */
+    /* 2. COLOR DE TEXTO SOBRE EL PRIMARIO */
+    /* El azul oscuro requiere texto blanco para ser legible (accesibilidad) */
+    /* ========================================================== */
+    --primary-color-text: #ffffff; 
+
+    /* ========================================================== */
+    /* 3. TONOS DE INTERACCIÓN (Hover, Active, Focus) */
+    /* Recomendado para que PrimeNG tenga un efecto visual: */
+    /* ========================================================== */
+    --primary-50: #e0f2ff;     /* Tono más claro (ej. para backgrounds sutiles) */
+    --primary-100: #b3d9f0;
+    --primary-200: #85c1e0;
+    --primary-300: #56a8d0;
+    --primary-400: #2a90c0;
+    
+    --primary-500: #014F86;     /* Tu color base */
+    --primary-600: #014477;     /* Tono ligeramente más oscuro (Hover) */
+    --primary-700: #003a68;     /* Tono más oscuro (Active) */
+    --primary-800: #002f5a;
+    --primary-900: #00254b;
+}

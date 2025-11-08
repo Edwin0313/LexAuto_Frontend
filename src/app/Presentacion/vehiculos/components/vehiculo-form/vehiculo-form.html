@@ -1,0 +1,72 @@
+<form [formGroup]="vehiculoForm" (ngSubmit)="guardarVehiculo()" class="p-fluid">
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="marca" class="block font-medium text-900 mb-1">Marca:</label>
+            <input id="marca" type="text" pInputText formControlName="marca" class="w-full p-inputtext-sm">
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="modelo" class="block font-medium text-900 mb-1">Modelo:</label>
+            <input id="modelo" type="text" pInputText formControlName="modelo" class="w-full p-inputtext-sm">
+        </div>
+    </div>
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="tipo" class="block font-medium text-900 mb-1">Tipo:</label>
+            <input id="tipo" type="text" pInputText formControlName="tipo" class="w-full p-inputtext-sm">
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="placa" class="block font-medium text-900 mb-1">Placa:</label>
+            <input id="placa" type="text" pInputText formControlName="placa" class="w-full p-inputtext-sm">
+        </div>
+    </div>
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="cilindraje" class="block font-medium text-900 mb-1">Cilindraje:</label>
+            <p-inputNumber id="cilindraje" formControlName="cilindraje" suffix=" cc" mode="decimal"
+                [minFractionDigits]="0" class="w-full">
+            </p-inputNumber>
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="anio" class="block font-medium text-900 mb-1">Año:</label>
+            <p-inputNumber id="anio" formControlName="anio" mode="decimal" [useGrouping]="false" [minFractionDigits]="0"
+                [maxlength]="4" class="w-full">
+            </p-inputNumber>
+        </div>
+    </div>
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="color" class="block font-medium text-900 mb-1">Color:</label>
+            <input id="color" type="text" pInputText formControlName="color" class="w-full p-inputtext-sm">
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="chasis" class="block font-medium text-900 mb-1">Chasis:</label>
+            <input id="chasis" type="text" pInputText formControlName="chasis" class="w-full p-inputtext-sm"
+                placeholder="VIN de 17 dígitos" maxlength="17">
+        </div>
+    </div>
+
+    <div class="field mb-3">
+        <label for="precio" class="block font-medium text-900 mb-1">Precio:</label>
+        <p-inputNumber id="precio" formControlName="precio" mode="currency" currency="USD" locale="es-EC"
+            class="w-full">
+        </p-inputNumber>
+    </div>
+
+    <div class="flex justify-content-end gap-2 pt-4">
+
+        <p-button label="Cancelar" icon="pi pi-times" (onClick)="cancelar()" type="button"
+            styleClass="p-button-secondary p-button-sm">
+        </p-button>
+
+        <p-button [label]="vehiculoExistente ? 'Guardar Cambios' : 'Registrar Vehículo'"
+            [icon]="vehiculoExistente ? 'pi pi-save' : 'pi pi-car'" type="submit"
+            styleClass="p-button-primary p-button-sm" [disabled]="vehiculoForm.invalid">
+        </p-button>
+
+    </div>
+
+</form>
