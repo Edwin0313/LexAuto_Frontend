@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessC
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Lara from '@primeuix/themes/lara';
+import Material from '@primeuix/themes/material';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 
@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     providePrimeNG({
       theme: {
-        preset: Lara
+        preset: Material
       }
     }),
     provideHttpClient(withFetch()),

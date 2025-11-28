@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 // Componentes de PrimeNG
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { DialogModule } from 'primeng/dialog'; // ⬅️ Nuevo: Importamos el módulo de diálogo
 
@@ -12,6 +11,8 @@ import { DialogModule } from 'primeng/dialog'; // ⬅️ Nuevo: Importamos el m�
 import { Vehiculo } from '../../models/vehiculo.model';
 import { VehiculoForm } from '../vehiculo-form/vehiculo-form';
 import { VehiculoService } from '../../services/vehiculo.service';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 @Component({
   selector: 'app-listar-vehiculo',
   standalone: true,
@@ -19,10 +20,11 @@ import { VehiculoService } from '../../services/vehiculo.service';
     CommonModule,
     TableModule,
     ButtonModule,
-    CardModule,
     InputTextModule,
     DialogModule,
-    VehiculoForm
+    VehiculoForm,
+    IconFieldModule,
+    InputIconModule
   ],
   templateUrl: './listar-vehiculo.html',
   styleUrl: './listar-vehiculo.scss',
@@ -85,7 +87,7 @@ export class ListarVehiculo implements OnInit {
 
   /**
    * Cierra el modal y refresca la lista si se guardó algo.
-   * Este método es llamado por el evento (onSaveOrCancel) del formulario hijo.
+   * Este método es llamado por el evento (saveOrCancel) del formulario hijo.
    */
   cerrarModal(recargar: boolean = false) {
     this.displayVehiculoModal = false;

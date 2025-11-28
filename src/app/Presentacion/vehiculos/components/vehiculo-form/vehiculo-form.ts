@@ -35,7 +35,7 @@ export class VehiculoForm implements OnChanges {
   // Recibe un vehículo para edición (si es nulo, es modo "Crear")
   // Asume que la interfaz Vehiculo tiene una propiedad 'id'.
   @Input() vehiculoExistente: Vehiculo & { id: number } | null = null;
-  @Output() onSaveOrCancel = new EventEmitter<boolean>();
+  @Output() saveOrCancel = new EventEmitter<boolean>();
 
   constructor() {
     // Inicialización del formulario
@@ -91,7 +91,7 @@ export class VehiculoForm implements OnChanges {
             complete: () => {
               // Cerrar el modal o navegar después de guardar.
               this.vehiculoForm.reset();
-              this.onSaveOrCancel.emit(true); // true indica que debe recargar la lista
+              this.saveOrCancel.emit(true); // true indica que debe recargar la lista
             }
           }
         );
@@ -114,7 +114,7 @@ export class VehiculoForm implements OnChanges {
             complete: () => {
               // Cerrar el modal o navegar después de guardar.
               this.vehiculoForm.reset();
-              this.onSaveOrCancel.emit(true); // true indica que debe recargar la lista
+              this.saveOrCancel.emit(true); // true indica que debe recargar la lista
             }
           }
         );
@@ -126,6 +126,6 @@ export class VehiculoForm implements OnChanges {
   }
   cancelar() {
     // Si tienes un botón de cancelar o quieres cerrarlo sin guardar:
-    this.onSaveOrCancel.emit(false); // false indica que no debe recargar
+    this.saveOrCancel.emit(false); // false indica que no debe recargar
   }
 }

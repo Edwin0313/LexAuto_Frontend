@@ -1,0 +1,195 @@
+<form [formGroup]="clienteForm" (ngSubmit)="guardarCliente()" class="p-4 pt-0">
+
+    <div class="field mb-3">
+        <label for="documentoIdentificacion" class="block text-900 mb-1">Número de cédula / RUC:</label>
+        <input id="documentoIdentificacion" type="text" pInputText formControlName="documentoIdentificacion"
+            class="w-full p-inputtext-sm" placeholder="Ej: 1705117711">
+        @if (clienteForm.get('documentoIdentificacion')?.invalid && clienteForm.get('documentoIdentificacion')?.touched)
+        {
+        <small class="text-red-500 block mt-1">
+            Cédula/RUC es requerido.
+        </small>
+        }
+    </div>
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="nombres" class="block text-900 mb-1">Nombres:</label>
+            <input id="nombres" type="text" pInputText formControlName="nombres" class="w-full p-inputtext-sm"
+                placeholder="Ej: Juan Carlos">
+            @if (clienteForm.get('nombres')?.invalid && clienteForm.get('nombres')?.touched) {
+            <small class="text-red-500 block mt-1">
+                Nombres son requeridos.
+            </small>
+            }
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="apellidos" class="block text-900 mb-1">Apellidos:</label>
+            <input id="apellidos" type="text" pInputText formControlName="apellidos" class="w-full p-inputtext-sm"
+                placeholder="Ej: Pérez Gómez">
+            @if (clienteForm.get('apellidos')?.invalid && clienteForm.get('apellidos')?.touched) {
+            <small class="text-red-500 block mt-1">
+                Apellidos son requeridos.
+            </small>
+            }
+        </div>
+    </div>
+
+    <div class="field mb-3">
+        <label for="correo" class="block font-medium text-900 mb-1">Correo electrónico:</label>
+        <input id="correo" type="email" pInputText formControlName="correo" class="w-full p-inputtext-sm"
+            placeholder="Ej: correo@ejemplo.com">
+        @if (clienteForm.get('correo')?.invalid && clienteForm.get('correo')?.touched) {
+        <small class="text-red-500 block mt-1">
+            Ingrese un correo válido.
+        </small>
+        }
+    </div>
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="telefono" class="block font-medium text-900 mb-1">Teléfono:</label>
+            <p-inputMask id="telefono" mask="999 999-9999" formControlName="telefono" class="w-full block px-0"
+                [style]="{width:'100%'}" placeholder="(Ej: 099 999-9999)">
+            </p-inputMask>
+            @if (clienteForm.get('telefono')?.invalid && clienteForm.get('telefono')?.touched) {
+            <small class="text-red-500 block mt-1">
+                Teléfono es requerido.
+            </small>
+            }
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="tipoPersonaId" class="block font-medium text-900 mb-1">Tipo de persona:</label>
+            <p-select id="tipoPersonaId" [options]="listadoTipoCliente" formControlName="tipoPersonaId"
+                placeholder="Selecciona un tipo" class="w-full" optionLabel="descripcion" optionValue="id"
+                [filter]="true" filterBy="descripcion" [showClear]="true">
+            </p-select>
+        </div>
+    </div>
+
+    <div class="grid formgrid">
+        <div class="col-12 md:col-6 field">
+            <label for="actividadEconomicaId" class="block font-medium text-900 mb-1">Actividad económica:</label>
+            <p-select id="actividadEconomicaId" [options]="listadoActividadEconomica"
+                formControlName="actividadEconomicaId" placeholder="Selecciona una actividad" class="w-full"
+                optionLabel="descripcion" optionValue="id" [filter]="true" filterBy="descripcion" [showClear]="true">
+            </p-select>
+        </div>
+        <div class="col-12 md:col-6 field">
+            <label for="nacionalidadId" class="block font-medium text-900 mb-1">Nacionalidad:</label>
+            <p-select id="nacionalidadId" [options]="listadoNacionalidad" formControlName="nacionalidadId"
+                placeholder="Selecciona una nacionalidad" class="w-full" optionLabel="descripcion" optionValue="id"
+                [filter]="true" filterBy="descripcion" [showClear]="true">
+            </p-select>
+        </div>
+    </div>
+
+    <div class="field mb-3">
+        <label for="direccion" class="block font-medium text-900 mb-1">Dirección domiciliaria:</label>
+        <input id="direccion" type="text" pInputText formControlName="direccion" class="w-full p-inputtext-sm"
+            placeholder="Ej: Av. Amazonas y Eloy Alfaro">
+        @if (clienteForm.get('direccion')?.invalid && clienteForm.get('direccion')?.touched) {
+        <small class="text-red-500 block mt-1">
+            Dirección es requerida.
+        </small>
+        }
+    </div>
+
+    <!-- datos adicionales -->
+    <div>
+        <h4 class="mb-3 text-lg font-bold">Información Adicional y Financiera</h4>
+
+        <div class="grid formgrid">
+            <!-- <div class="col-12 md:col-6 field">
+                <label for="parroquiaNacimientoId" class="block font-medium text-900 mb-1">Lugar de nacimiento (Parroquia):</label>
+                <p-select id="parroquiaNacimientoId" [options]="listadoParroquias" formControlName="parroquiaNacimientoId"
+                    placeholder="Selecciona una parroquia" class="w-full" optionLabel="descripcion" optionValue="id"
+                    [filter]="true" filterBy="descripcion" [showClear]="true">
+                </p-select>
+            </div> -->
+            <div class="col-12 md:col-6 field">
+                <label for="fechaNacimiento" class="block font-medium text-900 mb-1">Fecha de nacimiento:</label>
+                <p-datepicker id="fechaNacimiento" formControlName="fechaNacimiento" dateFormat="dd/mm/yy"
+                    [showIcon]="true" appendTo="body" class="w-full" fluid>
+                </p-datepicker>
+            </div>
+        </div>
+
+        <div class="grid formgrid">
+            <div class="col-12 md:col-6 field">
+                <label for="ingresosMensuales" class="block font-medium text-900 mb-1">Ingresos mensuales:</label>
+                <p-inputNumber id="ingresosMensuales" formControlName="ingresosMensuales" mode="currency" currency="USD"
+                    locale="es-EC" class="w-full">
+                </p-inputNumber>
+            </div>
+            <div class="col-12 md:col-6 field">
+                <label for="egresosMensuales" class="block font-medium text-900 mb-1">Egresos mensuales:</label>
+                <p-inputNumber id="egresosMensuales" formControlName="egresosMensuales" mode="currency" currency="USD"
+                    locale="es-EC" class="w-full">
+                </p-inputNumber>
+            </div>
+        </div>
+
+        <div class="grid formgrid">
+            <div class="col-12 md:col-6 field">
+                <label for="totalActivos" class="block font-medium text-900 mb-1">Total Activos:</label>
+                <p-inputNumber id="totalActivos" formControlName="totalActivos" mode="currency" currency="USD"
+                    locale="es-EC" class="w-full">
+                </p-inputNumber>
+            </div>
+            <div class="col-12 md:col-6 field">
+                <label for="totalPasivos" class="block font-medium text-900 mb-1">Total Pasivos:</label>
+                <p-inputNumber id="totalPasivos" formControlName="totalPasivos" mode="currency" currency="USD"
+                    locale="es-EC" class="w-full">
+                </p-inputNumber>
+            </div>
+        </div>
+
+        <div class="field mb-3">
+            <label for="patrimonio" class="block font-medium text-900 mb-1">Patrimonio:</label>
+            <p-inputNumber id="patrimonio" formControlName="patrimonio" mode="currency" currency="USD" locale="es-EC"
+                [readonly]="true" class="w-full">
+            </p-inputNumber>
+        </div>
+
+        <div class="grid formgrid">
+            <div class="col-12 md:col-6 field">
+                <label for="condicionPepId" class="block font-medium text-900 mb-1">¿Es Persona Expuesta Políticamente
+                    (PEP)?</label>
+                <p-select id="condicionPepId" [options]="listadoCondicionPep" formControlName="condicionPepId"
+                    placeholder="Seleccione una condición" class="w-full" optionLabel="descripcion" optionValue="id">
+                </p-select>
+            </div>
+            <div class="col-12 md:col-6 field">
+                <label for="origenFondosId" class="block font-medium text-900 mb-1">Origen de fondos:</label>
+                <p-select id="origenFondosId" [options]="listadoOrigenFondos" formControlName="origenFondosId"
+                    placeholder="Seleccione el origen" class="w-full" optionLabel="descripcion" optionValue="id">
+                </p-select>
+            </div>
+        </div>
+
+        <div class="field mb-3">
+            <label for="estadoCivilId" class="block font-medium text-900 mb-1">Estado civil:</label>
+            <p-select id="estadoCivilId" [options]="listadoEstadoCivil" formControlName="estadoCivilId"
+                placeholder="Selecciona el estado civil" class="w-full" optionLabel="descripcion" optionValue="id"
+                [filter]="true" filterBy="descripcion" [showClear]="true">
+            </p-select>
+        </div>
+
+        <div class="field mb-3">
+            <label for="consentimientoLopdp" class="block font-medium text-900 mb-1">Otorga consentimiento
+                LOPDP:</label>
+            <p-selectButton id="consentimientoLopdp" [options]="siNoOptions" formControlName="consentimientoLopdp"
+                optionLabel="label" optionValue="value" class="w-full">
+            </p-selectButton>
+        </div>
+    </div>
+
+    <div class="pt-2">
+        <p-button [label]="clienteExistente ? 'Actualizar Cliente' : 'Crear Nuevo Cliente'"
+            [icon]="clienteExistente ? 'pi pi-save' : 'pi pi-plus'" type="submit"
+            styleClass="w-full text-lg p-button-primary shadow-2" [disabled]="clienteForm.invalid">
+        </p-button>
+    </div>
+
+</form>

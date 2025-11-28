@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vehiculo } from '../models/vehiculo.model';
 
-const API_VEHICULOS = 'https://localhost:7283/api/vehiculos';
+const API_VEHICULOS = 'https://localhost:7283/api/vehiculo';
 
 @Injectable({
     providedIn: 'root' // Disponible para toda la app (o 'providedIn: ClienteFeatureModule' si fuera modular)
@@ -13,7 +13,7 @@ export class VehiculoService {
     constructor(private readonly http: HttpClient) { }
 
     getVehiculos(): Observable<Vehiculo[]> {
-        return this.http.get<Vehiculo[]>(API_VEHICULOS);
+        return this.http.get<Vehiculo[]>(API_VEHICULOS + '/vehiculo');
     }
 
     crearVehiculo(vehiculo: Vehiculo): Observable<Vehiculo> {

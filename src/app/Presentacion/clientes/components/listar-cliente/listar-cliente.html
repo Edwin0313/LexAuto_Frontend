@@ -1,20 +1,20 @@
 <div class="card p-5">
-    <h2 class="text-2xl font-bold mb-4">Administración de Vehículos</h2>
+    <h2 class="text-2xl font-bold mb-4">Administración de Clientes</h2>
 
-    <p-table [value]="vehiculos" [paginator]="true" [rows]="10" [loading]="loading"
+    <p-table [value]="clientes" [paginator]="true" [rows]="10" [loading]="loading"
         [globalFilterFields]="['placa', 'marca', 'modelo', 'anio']" #dt selectionMode="single"
-        [(selection)]="vehiculoSeleccionado" dataKey="id">
+        [(selection)]="clienteSeleccionado" dataKey="id">
 
         <ng-template pTemplate="caption">
             <div class="flex justify-content-between flex-wrap align-items-center">
                 <div class="w-full md:w-6">
                     <p-iconfield class="w-full">
                         <p-inputicon class="pi pi-search" />
-                        <input type="text" pInputText placeholder="Buscar por placa, marca, modelo..." class="w-full"
+                        <input type="text" pInputText placeholder="Buscar..." class="w-full"
                             (input)="dt.filterGlobal($any($event.target).value, 'contains')" />
                     </p-iconfield>
                 </div>
-                <p-button label="Nuevo Vehículo" icon="pi pi-plus" styleClass="p-button-success"
+                <p-button label="Nuevo Cliente" icon="pi pi-plus" styleClass="p-button-success"
                     (onClick)="abrirFormulario()">
                 </p-button>
             </div>
@@ -30,16 +30,18 @@
             </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-vehiculo>
+        <ng-template pTemplate="body" let-cliente>
             <tr>
-                <td>{{ vehiculo.placa }}</td>
-                <td>{{ vehiculo.marca }}</td>
-                <td>{{ vehiculo.modelo }}</td>
-                <td>{{ vehiculo.anio }}</td>
-                <td>{{ vehiculo.precio | currency:'USD':'symbol':'1.2-2' }}</td>
+                <td>{{ cliente.rucCliente }}</td>
+                <td>{{ cliente.nombreCliente }}</td>
+                <td>{{ cliente.correoCliente }}</td>
+                <td>{{ cliente.tipoPersonaCliente }}</td>
+                <td>{{ cliente.nacionalidadCliente }}</td>
+                <td>{{ cliente.esPEP }}</td>
+                <td>{{ cliente.consentimientoLOPDP }}</td>
                 <td>
                     <p-button icon="pi pi-pencil" styleClass="p-button-sm p-button-outlined p-button-info mr-2"
-                        (onClick)="abrirFormulario(vehiculo)">
+                        (onClick)="abrirFormulario(cliente)">
                     </p-button>
                 </td>
             </tr>
@@ -54,10 +56,10 @@
     </p-table>
 </div>
 
-<p-dialog [header]="vehiculoSeleccionado ? 'Editar Vehículo' : 'Registrar Nuevo Vehículo'"
-    [(visible)]="displayVehiculoModal" [modal]="true" [maximizable]="true" [style]="{ width: '50vw' }"
+<p-dialog [header]="clienteSeleccionado ? 'Editar Cliente' : 'Registrar Nuevo Cliente'"
+    [(visible)]="displayClienteModal" [modal]="true" [maximizable]="true" [style]="{ width: '60vw' }"
     (onHide)="cerrarModal()">
-    <app-vehiculo-form [vehiculoExistente]="vehiculoSeleccionado" (saveOrCancel)="cerrarModal($event)">
-    </app-vehiculo-form>
+    <app-cliente-form [clienteExistente]="clienteSeleccionado" (saveOrCancel)="cerrarModal($event)">
+    </app-cliente-form>
 
 </p-dialog>
